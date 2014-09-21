@@ -1,0 +1,58 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "http://repo.spring.io/libs-release" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+//apply plugin: 'war' //默认是jar
+
+//war {
+//    baseName = 'gs-convert-jar-to-war'
+//    version =  '0.1.0'
+//}
+
+
+jar {
+    baseName = 'gs-convert-jar-to-war'
+    version =  '0.1.0'
+}
+
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-release" }
+}
+
+//configurations {
+//    providedRuntime
+//}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-starter-web")
+//    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+
+//    compile 'org.codehaus.groovy:groovy-all:2.2.1'
+    compile("mysql:mysql-connector-java:5.1.25")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+//    compile("org.springframework.boot:spring-boot-starter-actuator")
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+
+sourceCompatibility = 1.8
+version = '1.0'
